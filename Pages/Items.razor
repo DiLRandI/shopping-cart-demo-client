@@ -1,0 +1,15 @@
+@page "/items"
+
+@using shopping_cart_demo_client.Data
+@inject ItemService itemService
+
+@code {
+    string data;
+
+    protected override async Task OnInitializedAsync()
+    {
+        data = await itemService.GetAllEmployeesAsync();
+    }
+}
+
+<h1>@data</h1>

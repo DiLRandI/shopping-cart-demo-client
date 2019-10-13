@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -28,7 +29,9 @@ namespace shopping_cart_demo_client
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddSingleton<HttpClient>();
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<ItemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
