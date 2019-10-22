@@ -4,12 +4,24 @@
 @inject ItemService itemService
 
 @code {
-    string data;
+    IList<Item> items = new List<Item>();
 
     protected override async Task OnInitializedAsync()
     {
-        data = await itemService.GetAllEmployeesAsync();
+        items = await itemService.GetAllEmployeesAsync();
     }
 }
 
-<h1>@data</h1>
+@foreach (var item in items)
+{
+    <h4> Id : @item.Id</h4>
+    <h4> ItemCode : @item.ItemCode</h4>
+    <h4> Description :  @item.Description</h4>
+    <h4> UnitPrice : @item.UnitPrice</h4>
+
+    @if(item.PackageDetails != null){
+        <h4>Height : @item.PackageDetails.Height</h4>
+        <h4>Width :@item.PackageDetails.Width</h4>
+        <h4>Weight :@item.PackageDetails.Weight</h4>
+    }
+}
